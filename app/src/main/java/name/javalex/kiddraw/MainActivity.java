@@ -235,15 +235,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //        }
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        drawView.buildDrawingCache();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        drawView.getDrawingCache();
-    }
 }
