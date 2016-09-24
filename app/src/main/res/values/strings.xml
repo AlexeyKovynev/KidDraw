@@ -8,5 +8,15 @@
     <string name="sml">Small</string>
     <string name="med">Medium</string>
     <string name="lrg">Large</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="toast_cannot_save">Oops! Image could not be saved.</string>
+    <string name="toast_saved">Drawing saved to Gallery!</string>
+    <string name="dialog_save_title">Save drawing</string>
+    <string name="dialog_save_message">Save drawing to device Gallery?</string>
+    <string name="dialog_new_title">New drawing</string>
+    <string name="dialog_new_message">Start new drawing (you will lose the current drawing)?</string>
+    <string name="yes">Yes</string>
+    <string name="dialog_eraser_title">Eraser size:</string>
+    <string name="dialog_brush_title">Brush size:</string>
     <item name="btn_draw" type="id">Draw</item>
 </resources>

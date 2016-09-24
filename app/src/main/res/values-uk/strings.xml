@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">KidDraw</string>
+    <string name="start_new">Новий</string>
+    <string name="brush">Пензлик</string>
+    <string name="erase">Стерти</string>
+    <string name="save">Зберегти</string>
+    <string name="paint">Вибір кольору</string>
+    <string name="sml">Маленький</string>
+    <string name="med">Середній</string>
+    <string name="lrg">Великий</string>
+    <string name="btn_cancel">Скасувати</string>
+    <string name="toast_cannot_save">Ой! Неможливо зберегти зображення.</string>
+    <string name="toast_saved">Малюнок збережений в галереї.</string>
+    <string name="dialog_save_title">Зберегти малюнок</string>
+    <string name="dialog_save_message">Зберегти малюнок у галереї пристрою?</string>
+    <string name="dialog_new_title">Новий малюнок</string>
+    <string name="dialog_new_message">Розпочати новий малюнок (поточний буде втрачено)?</string>
+    <string name="yes">Так</string>
+    <string name="dialog_eraser_title">Розмір ластику:</string>
+    <string name="dialog_brush_title">Розмір пензлика:</string>
+    <item name="btn_draw" type="id">Малювати</item>
+</resources>

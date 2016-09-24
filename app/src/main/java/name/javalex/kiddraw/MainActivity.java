@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private float smallBrush, mediumBrush, largeBrush;
     private DrawView drawView;
-    private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn, undoBtn, redoBtn;
-
+    private ImageButton currPaint, drawBtn, eraseBtn, newBtn, saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +46,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         saveBtn = (ImageButton)findViewById(R.id.btn_save);
         saveBtn.setOnClickListener(this);
+/*
 
         undoBtn = (ImageButton)findViewById(R.id.btn_undo);
         undoBtn.setOnClickListener(this);
 
         redoBtn = (ImageButton)findViewById(R.id.btn_redo);
         redoBtn.setOnClickListener(this);
+*/
 
         drawView.setBrushSize(mediumBrush);
     }
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_brush: {
                 //draw button clicked
                 final Dialog brushDialog = new Dialog(this);
-                brushDialog.setTitle("Brush size:");
+                brushDialog.setTitle(R.string.dialog_brush_title);
                 brushDialog.setContentView(R.layout.brush_chooser);
 
                 ImageButton smallBtn = (ImageButton) brushDialog.findViewById(R.id.small_brush);
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_eraser: {
                 //switch to erase - choose size
                 final Dialog brushDialog = new Dialog(this);
-                brushDialog.setTitle("Eraser size:");
+                brushDialog.setTitle(R.string.dialog_eraser_title);
                 brushDialog.setContentView(R.layout.brush_chooser);
 
                 ImageButton smallBtn = (ImageButton)brushDialog.findViewById(R.id.small_brush);
@@ -158,15 +159,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_new: {
                 //new button
                 AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
-                newDialog.setTitle("New drawing");
-                newDialog.setMessage("Start new drawing (you will lose the current drawing)?");
-                newDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                newDialog.setTitle(R.string.dialog_new_title);
+                newDialog.setMessage(R.string.dialog_new_message);
+                newDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which){
                         drawView.startNew();
                         dialog.dismiss();
                     }
                 });
-                newDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                newDialog.setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which){
                         dialog.cancel();
                     }
@@ -177,9 +178,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_save: {
                 //save drawing
                 AlertDialog.Builder saveDialog = new AlertDialog.Builder(this);
-                saveDialog.setTitle("Save drawing");
-                saveDialog.setMessage("Save drawing to device Gallery?");
-                saveDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                saveDialog.setTitle(R.string.dialog_save_title);
+                saveDialog.setMessage(R.string.dialog_save_message);
+                saveDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which){
                         //save drawing
 
@@ -189,18 +190,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 UUID.randomUUID().toString()+".png", "drawing");
                         if(imgSaved!=null){
                             Toast savedToast = Toast.makeText(getApplicationContext(),
-                                    "Drawing saved to Gallery!", Toast.LENGTH_SHORT);
+                                    R.string.toast_saved, Toast.LENGTH_SHORT);
                             savedToast.show();
                         }
                         else{
                             Toast unsavedToast = Toast.makeText(getApplicationContext(),
-                                    "Oops! Image could not be saved.", Toast.LENGTH_SHORT);
+                                    R.string.toast_cannot_save, Toast.LENGTH_SHORT);
                             unsavedToast.show();
                         }
                         drawView.destroyDrawingCache();
                     }
                 });
-                saveDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                saveDialog.setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int which){
                         dialog.cancel();
                     }
@@ -209,6 +210,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 saveDialog.show();
                 break;
             }
+/*
             case R.id.btn_undo: {
                 drawView.onClickUndo();
                 break;
@@ -218,6 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 drawView.onClickRedo();
                 break;
             }
+            */
         }
 //        if(view.getId()==R.id.btn_brush){
 //
@@ -232,6 +235,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //        }
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        drawView.buildDrawingCache();
+    }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        drawView.getDrawingCache();
+    }
 }

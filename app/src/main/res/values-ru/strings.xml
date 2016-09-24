@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">KidDraw</string>
+    <string name="start_new">Новый</string>
+    <string name="brush">Кисть</string>
+    <string name="erase">Стереть</string>
+    <string name="save">Сохранить</string>
+    <string name="paint">Выбор цвета</string>
+    <string name="sml">Маленький</string>
+    <string name="med">Средний</string>
+    <string name="lrg">Большой</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="toast_cannot_save">Ой! Невозможно сохранить изображение.</string>
+    <string name="toast_saved">Рисунок сохранён в галерее.</string>
+    <string name="dialog_save_title">Сохранить рисунок</string>
+    <string name="dialog_save_message">Сохранить рисунок в галерее устройства?</string>
+    <string name="dialog_new_title">Новый рисунок</string>
+    <string name="dialog_new_message">Начать новый рисунок (текущий будет удалён)?</string>
+    <string name="yes">Да</string>
+    <string name="dialog_eraser_title">Размер ластика:</string>
+    <string name="dialog_brush_title">Размер кисти:</string>
+    <item name="btn_draw" type="id">Рисовать</item>
+</resources>

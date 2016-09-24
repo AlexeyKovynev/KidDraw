@@ -13,9 +13,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.ArrayList;
-import name.javalex.kiddraw.R;
-
 public class DrawView extends View {
 
     //drawing path
@@ -31,31 +28,32 @@ public class DrawView extends View {
 
     private float brushSize, lastBrushSize;
 
-    private boolean erase = false;
+    /*
+        private ArrayList<Path> paths = new ArrayList<>();
+        private ArrayList<Path> undonePaths = new ArrayLi<>();
+    /*
 
-    private ArrayList<Path> paths = new ArrayList<Path>();
-    private ArrayList<Path> undonePaths = new ArrayList<Path>();
+        public void onClickUndo () {
+            if (paths.size()>0) {
+                undonePaths.add(paths.remove(paths.size()-1));
+                invalidate();
+            } else {
 
-    public void onClickUndo () {
-        if (paths.size()>0) {
-            undonePaths.add(paths.remove(paths.size()-1));
-            invalidate();
-        } else {
-
+            }
+            //toast
         }
-        //toast
-    }
 
-    public void onClickRedo (){
-        if (undonePaths.size()>0) {
-            paths.add(undonePaths.remove(undonePaths.size()-1));
-            invalidate();
-        } else {
 
+        public void onClickRedo (){
+            if (undonePaths.size()>0) {
+                paths.add(undonePaths.remove(undonePaths.size()-1));
+                invalidate();
+            } else {
+
+            }
+            //toast
         }
-        //toast
-    }
-
+        */
     public DrawView(Context context, AttributeSet attrs) {
         super(context, attrs);
         setupDrawingArea();
@@ -63,8 +61,7 @@ public class DrawView extends View {
 
     public void setErase(boolean isErase){
         //set erase true or false
-        erase=isErase;
-        if(erase) drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        if(isErase) drawPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         else drawPaint.setXfermode(null);
     }
 
@@ -105,7 +102,7 @@ public class DrawView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 //draw view
-        undonePaths.clear();
+        //undonePaths.clear();
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
     }
@@ -122,7 +119,7 @@ public class DrawView extends View {
                 break;
             case MotionEvent.ACTION_MOVE:
                 drawPath.lineTo(touchX, touchY);
-                paths.add(drawPath);
+                //paths.add(drawPath);
                 break;
             case MotionEvent.ACTION_UP:
                 drawCanvas.drawPath(drawPath, drawPaint);
@@ -146,9 +143,8 @@ public class DrawView extends View {
 
     public void setBrushSize(float newSize){
     //update size
-        float pixelAmount = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+        brushSize= TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 newSize, getResources().getDisplayMetrics());
-        brushSize=pixelAmount;
         drawPaint.setStrokeWidth(brushSize);
     }
 
