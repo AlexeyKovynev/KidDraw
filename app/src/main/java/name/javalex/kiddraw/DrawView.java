@@ -98,10 +98,8 @@ public class DrawView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 //view given size
         super.onSizeChanged(w, h, oldw, oldh);
-
         canvasBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         drawCanvas = new Canvas(canvasBitmap);
-
     }
 
     @Override
@@ -110,7 +108,6 @@ public class DrawView extends View {
         undonePaths.clear();
         canvas.drawBitmap(canvasBitmap, 0, 0, canvasPaint);
         canvas.drawPath(drawPath, drawPaint);
-
     }
 
     @Override
